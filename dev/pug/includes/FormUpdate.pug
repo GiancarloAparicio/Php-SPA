@@ -1,0 +1,29 @@
+include Icons.pug
+
+mixin FormUpdate()
+    <!--Formulario para actualizar una Task-->
+    div(class="card card-body border-secondary")
+        h2(class="text-center") Update task
+            +Task-Icon()
+
+        form( class="form-group" id="update_task")
+            div( class="form-group")
+                input(class="form-control" 
+                      type="text" 
+                      name="title"
+                      id="updateTitle" 
+                      autocomplete="off"
+                      placeholder="Update the task title"
+                      autofocus)
+
+            div( class="form-group")
+                textarea(class="form-control" 
+                         name="description"
+                         id="updateDescription" 
+                         cols="2" 
+                         autocomplete="off"
+                         placeholder="Update the description Task")
+
+            input(type="submit" 
+                  value="Update"
+                  class="btn btn-success btn-block") 

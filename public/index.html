@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" type="text/css" href="./css/index.css">
+  <!--link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' integrity='sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk' crossorigin='anonymous')-->
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./fonts/styles.css">
+  <title>Document</title>
+</head>
+<body><!--Navegacion-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <h1>Php Crud</h1><!--Boton para la navegacion-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><!--Formulario para buscar Tarea-->
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <form class="form-inline ml-auto" id="searchTask">
+            <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search Task">
+            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-content" role="document">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">Mensaje Modal
+          <table class="table table-hover table-bordered mt-4 ">
+            <thead>
+              <tr class="table table-info"></tr>
+              <th scope="col">Id</th>
+              <th scope="col">Title task</th>
+              <th scope="col">Description task</th>
+              <th scope="col">Actions</th>
+            </thead>
+            <tbody id="modal"></tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" type="button" id="modal-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div><!--Router-->
+  <div class="container"><!--Home-->
+    <div class="row py-4 " id="home"><!--Task form-->
+      <div class="col-md-4" id="form"><!--Formulario para las Task-->
+          <div class="card card-body border-secondary">
+            <h2 class="text-center">List task
+                <svg class="bi bi-bookmarks" width="1em" height="1em" viewbox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M7 13l5 3V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12l5-3zm-4 1.234l4-2.4 4 2.4V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10.234z"></path>
+                  <path d="M14 14l-1-.6V2a1 1 0 0 0-1-1H4.268A2 2 0 0 1 6 0h6a2 2 0 0 1 2 2v12z"></path>
+                </svg>
+            </h2>
+            <form class="form-group" id="save_task">
+              <div class="form-group">
+                <input class="form-control" type="text" name="title" autocomplete="off" placeholder="Title Task" autofocus>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="description" cols="2" autocomplete="off" placeholder="Description Task"></textarea>
+              </div>
+              <input class="btn btn-success btn-block" type="submit" value="Save">
+            </form>
+          </div><!--Render mensaje-->
+          <div id="alert"></div>
+      </div><!--Task table-->
+      <div class="col-md-8">
+          <table class="table table-hover table-bordered mt-4 ">
+            <thead>
+              <tr class="table table-info">
+                <th scope="col">Id</th>
+                <th scope="col">Title task</th>
+                <th scope="col">Description task</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="table"></tbody>
+          </table>
+      </div>
+    </div><!--UpdateTask-->
+    <div class="row py-4 d-none" id="updateTask">
+      <div class="col-md-5 mx-auto"><!--Formulario para actualizar una Task-->
+          <div class="card card-body border-secondary">
+            <h2 class="text-center">Update task
+                <svg class="bi bi-bookmarks" width="1em" height="1em" viewbox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M7 13l5 3V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12l5-3zm-4 1.234l4-2.4 4 2.4V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10.234z"></path>
+                  <path d="M14 14l-1-.6V2a1 1 0 0 0-1-1H4.268A2 2 0 0 1 6 0h6a2 2 0 0 1 2 2v12z"></path>
+                </svg>
+            </h2>
+            <form class="form-group" id="update_task">
+              <div class="form-group">
+                <input class="form-control" type="text" name="title" id="updateTitle" autocomplete="off" placeholder="Update the task title" autofocus>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="description" id="updateDescription" cols="2" autocomplete="off" placeholder="Update the description Task"></textarea>
+              </div>
+              <input class="btn btn-success btn-block" type="submit" value="Update">
+            </form>
+          </div>
+      </div>
+    </div><!--404 Not Found-->
+    <div class="row py-4 d-none" id="notFound">
+      <div class="col-md-7"><img class="img-fluid" src="./img/404.jpg" alt="Responsive image"></div>
+      <div class="col-md-5 pt-5">
+          <div class="text-center container pt-5">
+            <h2 Class="text-dark p-5">Opps algo salio mal  :(</h2>
+            <h3>Intenta denuevo</h3>
+          </div>
+          <div class="container text-center py-4"><a class="btn btn-success mx-auto" href="#home"> 
+              <h4 Class="text-white">Start again</h4></a></div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="./js/scripts.js"></script>
+</body>

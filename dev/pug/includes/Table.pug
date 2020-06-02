@@ -1,0 +1,25 @@
+include Icons.pug
+
+mixin Table()
+    table(class="table table-hover table-bordered mt-4 ")
+        thead
+          tr(class="table table-info")
+            th(scope='col') Id
+            th(scope='col') Title task
+            th(scope='col') Description task
+            th(scope='col') Actions
+        tbody(id="table")
+
+          //- tr
+          //-   th 01
+          //-   td Task-1
+          //-   td Description Task
+          //-   td
+          //-       button(class="mx-auto btn btn-secondary")
+          //-           +Edit-Icon()
+
+          //-       button(class="mx-auto btn btn-danger")
+          //-           +Trash-Icon()
+                
+        
+        

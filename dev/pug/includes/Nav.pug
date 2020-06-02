@@ -1,0 +1,28 @@
+mixin Nav()
+  <!--Navegacion-->
+  nav(class="navbar navbar-expand-lg navbar-dark bg-primary")
+    div(class="container")
+      h1 Php Crud
+
+      <!--Boton para la navegacion-->
+      button(class="navbar-toggler" 
+             type='button' 
+             data-toggle='collapse' 
+             data-target='#navbarColor01' 
+             aria-controls='navbarColor01' 
+             aria-expanded='false' 
+             aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+
+      <!--Formulario para buscar Tarea-->
+      div(class="collapse navbar-collapse" id="navbarColor01")
+
+        form(id="searchTask" class="form-inline ml-auto")
+          input(class="form-control mr-sm-2" 
+                type='text' 
+                name="search" 
+                placeholder='Search Task')
+          button(class="btn btn-info"  
+                 data-toggle="modal" 
+                 data-target="#exampleModal"
+                 type='submit') Search

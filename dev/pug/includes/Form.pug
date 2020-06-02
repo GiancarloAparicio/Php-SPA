@@ -1,0 +1,31 @@
+include Icons.pug
+
+mixin Form()
+
+    <!--Formulario para las Task-->
+    div(class="card card-body border-secondary")
+        h2(class="text-center") List task
+            +Task-Icon()
+
+        form( class="form-group" id="save_task")
+            div( class="form-group")
+                input(class="form-control" 
+                      type="text" 
+                      name="title" 
+                      autocomplete="off"
+                      placeholder="Title Task"
+                      autofocus)
+
+            div( class="form-group")
+                textarea(class="form-control" 
+                         name="description" 
+                         cols="2" 
+                         autocomplete="off"
+                         placeholder="Description Task")
+
+            input(type="submit" 
+                  value="Save" 
+                  class="btn btn-success btn-block")
+
+    <!--Render mensaje-->
+    div(id="alert")
