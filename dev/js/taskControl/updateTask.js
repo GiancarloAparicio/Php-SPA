@@ -17,6 +17,7 @@ const updateTask = () => {
                 id: element.attributes.key.nodeValue
             };
 
+
             //Guardamos el id de la tarea
             localStorage.setItem("id", data.id);
 
@@ -35,6 +36,7 @@ const updateTask = () => {
             //Mostramos la respuesta para poder actualizarla
             document.querySelector("#updateTitle").value = respuesta[0].title;
             document.querySelector("#updateDescription").value = respuesta[0].description;
+
         });
     })
 }
@@ -60,25 +62,45 @@ export const getOneTask = () => {
                 'Content-Type': 'application/json'
             }
         };
+        let $title = document.querySelector("#updateTitle");
+        let $description = document.querySelector("#updateDescription");
 
 
-        //Enviamos los datos
-        let res = await fetch("./php/updateTask.php", options);
-        let respuesta = await res.json();
+        if (validate($title) && validate($description)) {
+            //Enviamos los datos
+            let res = await fetch("./php/updateTask.php", options);
+            let respuesta = await res.json();
 
-        //Reiniciamos el formulario
-        $form.reset();
+            //Reiniciamos el formulario
+            $form.reset();
 
-        //Mostramos el mensaje
-        renderStatus(respuesta);
+            //Mostramos el mensaje
+            renderStatus(respuesta);
 
-        //Actualizamos la tabla
-        readTask();
+            //Actualizamos la tabla
+            readTask();
 
-        //Redirecionamos a Home
-        window.location.hash = "#home";
+            //Redirecionamos a Home
+            window.location.hash = "#home";
+        }
 
     })
+}
+
+export const validate = (element) => {
+
+    if (element.value === "" || element.value === null) {
+        (element.classList.contains("is-invalid")) ?
+        "" : element.classList.toggle("is-invalid");
+        return false
+
+    } else {
+        (element.classList.contains("is-invalid")) ?
+        element.classList.toggle("is-invalid"): "";
+
+        return true;
+    }
+
 }
 
 export default updateTask;
