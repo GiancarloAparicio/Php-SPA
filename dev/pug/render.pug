@@ -4,13 +4,14 @@ include includes/FormUpdate.pug
 include includes/Table.pug
 include includes/Modal.pug
 include includes/NotFound.pug
+include includes/Footer.pug
 
 +Nav()
 +Modal()
 <!--Router-->
 div(class="container" )
     <!--Home-->
-    div(class="row py-4 " id="home")
+    header(class="row py-5 " id="home")
         <!--Task form-->
         div(class="col-md-4" id="form")
             +Form()
@@ -25,9 +26,12 @@ div(class="container" )
             +FormUpdate()
 
     <!--404 Not Found-->
-    div(class="row py-4 d-none" id="notFound")
+    div(class="row py-5 d-none" id="notFound")
         div(class="col-md-7")
             img.img-fluid(src='./img/404.jpg' alt='Responsive image')
         div(class="col-md-5 pt-5")
             +NotFound()
         
+    hr(class="mt-5")
+    footer(class="text-center")
+        +Footer()
