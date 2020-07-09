@@ -2,12 +2,16 @@ CREATE DATABASE IF NOT EXIST php;
 
 USE php;
 
-CREATE TABLE IF NOT EXIST crud(
+CREATE TABLE crud(
 id INT AUTO_INCREMENT PRIMARY KEY,
 title VARCHAR(30) NOT NULL,
 description VARCHAR(50) NOT NULL
 );
 
-GRANT ALL ON php.crud ON "User"@"localhost" identified by "000";
+
+CREATE USER 'User'@'localhost' IDENTIFIED BY '0000';
+
+GRANT ALL ON php.* TO 'User'@'localhost';
 
 FLUSH PRIVILEGES;
+
