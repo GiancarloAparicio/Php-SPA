@@ -1,10 +1,6 @@
 <?php
 
-//Variables de Usuario
-$server="127.0.0.1";
-$dabaBase="php";
-$user="User";
-$pass="0000";
+include_once "./data.php";
 
 
 try{
@@ -23,9 +19,9 @@ try{
 
     //Ejecutar Sentencia
     $band=$sentencia->execute([
-    $title,
-    $description,
-    $id
+        $title,
+        $description,
+        $id
     ]);
 
     //Enviamos un mensaje si la sentencia se ejecuto con exito o no

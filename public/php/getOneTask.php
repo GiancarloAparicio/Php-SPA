@@ -1,10 +1,6 @@
 <?php
 
-//Variables de Usuario
-$server="127.0.0.1";
-$dabaBase="php";
-$user="User";
-$pass="0000";
+include_once "./data.php";
 
 try{
     $pdo= new PDO(  "mysql:host={$server}; dbname={$dabaBase}",$user, $pass );
@@ -20,6 +16,8 @@ try{
     $sentencia->execute([
         $id
     ]);
+
+    
     
     $data=$sentencia->fetchAll();
 
