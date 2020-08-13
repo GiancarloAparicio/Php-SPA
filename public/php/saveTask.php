@@ -4,45 +4,42 @@
 include_once "./data.php";
 
 
-try{
-    $pdo= new PDO(  "mysql:host={$server}; dbname={$dabaBase}",$user, $pass );
-    
+try {
+    $pdo = new PDO("mysql:host={$server}; dbname={$dabaBase}", $user, $pass);
+
     //Preparacion
-    $sql="INSERT INTO crud(title,description) values (?,?)"; 
-    $sentencia= $pdo->prepare( $sql );
+    $sql = "INSERT INTO crud(title,description) values (?,?)";
+    $sentencia = $pdo->prepare($sql);
 
     //Obtenemos variables
-    $task=$_POST["title"];
-    $description=$_POST["description"];
-    
-   
+    $task = $_POST["title"];
+    $description = $_POST["description"];
+
+
     //Ejecutar Sentencia
-    $band=$sentencia->execute([
-     $task,
-     $description
+    $band = $sentencia->execute([
+        $task,
+        $description
     ]);
 
     //Enviamos un mensaje si la sentencia se ejcuto con exito
-    if($band){
-        $res=[
-            "message"=>"Task save successfully",
-            "message_type"=> "success",
-            "element"=> "#alert"
+    if ($band) {
+        $res = [
+            "message" => "Task save successfully",
+            "message_type" => "success",
+            "element" => "#alert"
         ];
-    }else{
-        $res=[
-            "message"=>"Failed to saving task",
-            "message_type"=> "danger",
-            "element"=> "#alert"
+    } else {
+        $res = [
+            "message" => "Failed to saving task",
+            "message_type" => "danger",
+            "element" => "#alert"
         ];
-
     }
 
     echo json_encode($res);
-
-    }catch(PDOException $e){
-        echo json_encode($e);
-    }finally{
-        $pdo=null;   //Cerramos el flujo de datos
-    }
-?>
+} catch (PDOException $e) {
+    echo json_encode($e);
+} finally {
+    $pdo = null;   //Cerramos el flujo de datos
+}
