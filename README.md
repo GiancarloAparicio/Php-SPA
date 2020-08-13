@@ -1,4 +1,4 @@
-# CRUD with PHP
+# CRUD with JS and PHP
 
 Basic Create, Read, Update, Delete functionality,
 created using Boostrap, Gulp, Pug, Sass
